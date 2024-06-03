@@ -31,7 +31,3 @@ html, body {
     justify-content: center;
     z-index: 0;
 }
-
-#vocabulary-trainer.hidden {
-    z-index: -1;
-}
