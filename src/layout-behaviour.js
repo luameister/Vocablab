@@ -1,4 +1,7 @@
+
 const tools = document.querySelectorAll('.tool-container');
+let swipeStartY = 0;
+let swipeTreshold = 50;
 let currentToolIndex = 0;
 let animationInProgress = false;
 
@@ -68,5 +71,20 @@ document.addEventListener('keydown', (event) => {
         showNextTool();
     } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
         showPreviousTool();
+    }
+});
+
+document.addEventListener('touchstart', (event) => {
+    swipeStartY = event.touches[0].clientY;
+});
+
+document.addEventListener('touchend', (event) => {
+    const swipeEndY = event.changedTouches[0].clientY;
+    const swipeDistance = swipeEndY - swipeStartY;
+
+    if (swipeDistance > swipeTreshold) {
+        showPreviousTool();
+    } else if (swipeDistance < -swipeTreshold) {
+        showNextTool();
     }
 });
